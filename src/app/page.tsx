@@ -111,12 +111,12 @@ export default function Home() {
   });
 
 
-  const streamEffectiveness = calculateStreamEffectiveness(campaignData.dates.length);
   const totalSpentSum = campaignData.totalSpent[campaignData.totalSpent.length - 1] || 0;
   const totalEngagementSum = campaignData.totalEngagement[campaignData.totalEngagement.length - 1] || 0;
   const totalStreamsSum = campaignData.totalStreams[campaignData.totalStreams.length - 1] || 0;
 
   const engagementEffectiveness = totalSpentSum ? (totalEngagementSum / totalSpentSum).toFixed(2) : 0;
+  const streamEffectiveness = totalSpentSum ? (totalStreamsSum / totalSpentSum).toFixed(2) : 0;
 
   const calculateCorrelation = (x: number[], y: number[]): number => {
     const n = x.length;
