@@ -105,30 +105,31 @@ export default function Home() {
 
     // Calculate average daily growth and stream effectiveness based on spend
   // Calculate average daily growth and stream effectiveness based on spend
-  const calculateStreamEffectiveness = (currentIndex) => {
+  const calculateStreamEffectiveness = (currentIndex: number): number => {
     const totalDays = currentIndex - 1; // Calculate days up to and including the current day
-
+  
     if (totalDays < 2) return 0; // Not enough data to calculate growth
-
+  
     // Calculate daily growth for each day up until the current day
     const dailyGrowth = campaignData.dailyStreams.slice(1, totalDays).map((value, index) => {
       return value - campaignData.dailyStreams[index];
     });
-
+  
     console.log(dailyGrowth.reduce((sum, growth) => sum + growth, 0));
-
+  
     // Calculate average daily growth based on data so far
     const averageDailyGrowth = dailyGrowth.reduce((sum, growth) => sum + growth, 0) / dailyGrowth.length;
     console.log(averageDailyGrowth);
-
+  
     // Expected cumulative growth based on average daily growth and days so far
     const expectedGrowth = averageDailyGrowth * totalDays;
     console.log(expectedGrowth);
-
+  
     // Calculate stream effectiveness as expected growth per dollar spent
     const totalSpentSum = campaignData.totalSpent[totalDays - 1] || 1; // Avoid divide by zero
-    return (expectedGrowth / totalSpentSum).toFixed(2);
+    return parseFloat((expectedGrowth / totalSpentSum).toFixed(2));
   };
+  
 
   // Calculate daily effectiveness data for each day
   const dailyEffectivenessData = campaignData.dates.map((date, index) => {
