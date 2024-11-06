@@ -6,11 +6,6 @@ import { ComboChart } from "@/components/ComboChart";
 import { LineChart } from "@/components/LineChart";
 import { Card } from "@/components/Card";
 
-interface TooltipProps {
-  payload: any[]; // Adjust this type based on the actual structure of `payload`
-  active: boolean;
-  label: string;
-}
 
 interface CampaignData {
   dates: string[];
@@ -20,38 +15,6 @@ interface CampaignData {
   dailyStreams: number[];
 }
 
-const Tooltip: React.FC<TooltipProps> = (props) => {
-  const { payload, active, label } = props;
-  if (!active || !payload || payload.length === 0) return null;
-
-  const data = payload[0].payload;
-  const categoriesToShow = ["engagement", "spend"];
-
-  return (
-    <div className="w-56 rounded-md border bg-white/5 p-3 text-sm shadow-sm backdrop-blur-md dark:border-gray-800 dark:bg-black/5">
-      <p className="mb-2 font-medium text-gray-900 dark:text-gray-50">{label}</p>
-      <div className="flex flex-col space-y-2">
-        {categoriesToShow.map((category) => (
-          <div key={category} className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div
-                className={` ${
-                  category === "engagement"
-                    ? "h-2.5 w-2.5 rounded-sm bg-blue-500"
-                    : "h-1 w-4 rounded-full bg-orange-500"
-                }`}
-              />
-              <p className="text-gray-700 dark:text-gray-400">{category}</p>
-            </div>
-            <p className="font-medium tabular-nums text-gray-900 dark:text-gray-50">
-              {category === "spend" ? `$${data[category]}` : data[category].toLocaleString()}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 export default function Home() {
   const [campaignData, setCampaignData] = useState<CampaignData>({
@@ -221,7 +184,6 @@ export default function Home() {
                 engagement: campaignData.totalEngagement[index]
               }))}
               index="date"
-              customTooltip={Tooltip}
               enableBiaxial={true}
               barSeries={{
                 categories: ["engagement"],
