@@ -99,7 +99,6 @@ export default function Home() {
   const dailyEffectivenessData = campaignData.dates.map((date, index) => {
     // Calculate stream effectiveness up to the current day (index)
     const streamEffectiveness = calculateStreamEffectiveness(index);
-    console.log(streamEffectiveness)
 
     const spend = campaignData.totalSpent[index];
     if (spend === 0) return { date, combinedEffectiveness: 0 };
@@ -113,7 +112,6 @@ export default function Home() {
 
 
   const streamEffectiveness = calculateStreamEffectiveness(campaignData.dates.length);
-
   const totalSpentSum = campaignData.totalSpent[campaignData.totalSpent.length - 1] || 0;
   const totalEngagementSum = campaignData.totalEngagement[campaignData.totalEngagement.length - 1] || 0;
   const totalStreamsSum = campaignData.totalStreams[campaignData.totalStreams.length - 1] || 0;
