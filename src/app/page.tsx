@@ -156,18 +156,19 @@ export default function Home() {
 
   const engagementEffectiveness = totalSpentSum ? (totalEngagementSum / totalSpentSum).toFixed(2) : 0;
 
-  const calculateCorrelation = (x, y) => {
+  const calculateCorrelation = (x: number[], y: number[]): number => {
     const n = x.length;
     const meanX = x.reduce((sum, val) => sum + val, 0) / n;
     const meanY = y.reduce((sum, val) => sum + val, 0) / n;
-
+  
     const numerator = x.reduce((sum, xi, i) => sum + (xi - meanX) * (y[i] - meanY), 0);
     const denominatorX = Math.sqrt(x.reduce((sum, xi) => sum + (xi - meanX) ** 2, 0));
     const denominatorY = Math.sqrt(y.reduce((sum, yi) => sum + (yi - meanY) ** 2, 0));
-
+  
     const denominator = denominatorX * denominatorY;
-    return denominator === 0 ? 0 : (numerator / denominator).toFixed(4);
+    return denominator === 0 ? 0 : parseFloat((numerator / denominator).toFixed(4));
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-50 to-blue-50 p-8">
