@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
-import { ComboChart } from "@/components/ComboChart";
+import { ComboChart, TooltipProps } from "@/components/ComboChart";
 import { LineChart } from "@/components/LineChart";
 import { Card } from "@/components/Card";
 
@@ -10,6 +10,14 @@ interface TooltipProps {
   payload: any[]; // Adjust this type based on the actual structure of `payload`
   active: boolean;
   label: string;
+}
+
+interface CampaignData {
+  dates: string[];
+  totalSpent: number[];
+  totalEngagement: number[];
+  totalStreams: number[];
+  dailyStreams: number[];
 }
 
 const Tooltip: React.FC<TooltipProps> = (props) => {
@@ -46,7 +54,7 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
 };
 
 export default function Home() {
-  const [campaignData, setCampaignData] = useState({
+  const [campaignData, setCampaignData] = useState<CampaignData>({
     dates: [],
     totalSpent: [],
     totalEngagement: [],
@@ -75,10 +83,10 @@ export default function Home() {
           }
         }).filter(row => row !== null);
 
-        const dates = parsedData.map(row => row.Date);
-        const totalSpent = parsedData.map(row => row.TotalSpent);
-        const totalEngagement = parsedData.map(row => row.TotalEngagement);
-        const totalStreams = parsedData.map(row => row.TotalStreams);
+        const dates = parsedData.map(row => row!.Date);
+        const totalSpent = parsedData.map(row => row!.TotalSpent);
+        const totalEngagement = parsedData.map(row => row!.TotalEngagement);
+        const totalStreams = parsedData.map(row => row!.TotalStreams);
 
         const dailyStreams = totalStreams.map((value, index) =>
           index === 0 ? 0 : value - totalStreams[index - 1]
