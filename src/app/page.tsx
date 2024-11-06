@@ -18,12 +18,13 @@ interface CampaignData {
 
 export default function Home() {
   const [campaignData, setCampaignData] = useState<CampaignData>({
-    dates: [],
-    totalSpent: [],
-    totalEngagement: [],
-    totalStreams: [],
-    dailyStreams: []
+    dates: [] as string[],
+    totalSpent: [] as number[],
+    totalEngagement: [] as number[],
+    totalStreams: [] as number[],
+    dailyStreams: [] as number[]
   });
+  
 
   useEffect(() => {
     fetch('./Completed_Engagement_Data.csv')
