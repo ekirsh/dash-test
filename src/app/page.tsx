@@ -6,7 +6,13 @@ import { ComboChart, TooltipProps } from "@/components/ComboChart";
 import { LineChart } from "@/components/LineChart";
 import { Card } from "@/components/Card";
 
-const Tooltip = (props) => {
+interface TooltipProps {
+  payload: any[]; // Adjust this type based on the actual structure of `payload`
+  active: boolean;
+  label: string;
+}
+
+const Tooltip: React.FC<TooltipProps> = (props) => {
   const { payload, active, label } = props;
   if (!active || !payload || payload.length === 0) return null;
 
