@@ -186,7 +186,7 @@ export default function Home() {
               enableBiaxial={true}
               barSeries={{
                 categories: ["engagement"],
-                yAxisLabel: "Total Engagement",
+                yAxisLabel: "Total Engagement (Bars)",
               }}
               lineSeries={{
                 categories: ["spend"],
@@ -239,7 +239,7 @@ export default function Home() {
               enableBiaxial={true}
               barSeries={{
                 categories: ["streams"],
-                yAxisLabel: "Total Streams (Bars)",
+                yAxisLabel: "Daily Streams (Bars)",
               }}
               lineSeries={{
                 categories: ["spend"],
