@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from "next/image";
-import { ComboChart, TooltipProps } from "@/components/ComboChart";
+import { ComboChart } from "@/components/ComboChart";
 import { LineChart } from "@/components/LineChart";
 import { Card } from "@/components/Card";
 
